@@ -255,7 +255,7 @@ function applyGlitchEffectToNewLanguage() {
 <div class="text-block-13">Mining</div></a></nav></div><a href="faq.html" class="textg w-inline-block">
 <div class="glitchtest">FAQ</div><div class="majabar"></div></a><a href="/merch" class="textg hide w-inline-block">
 <div class="glitchtest">Merch</div><div class="majabar"></div></a><a href="/blog" class="textg w-inline-block">
-<div>Blog</div><div class="majabar"></div></a><div data-hover="true" data-delay="5" class="dropdwon w-dropdown"><div class="dropdown-toggle-2 w-dropdown-toggle"><div class="text-block-15">More</div><div class="majabar"></div></div><nav class="dropdown-list-2 w-dropdown-list"><a href="/address-converter" class="link-block-7 w-inline-block"><img src="https://assets-global.website-files.com/60d1114fcb4e3ebeff511585/60d1114fcb4e3e178d511675_Icon-04%20copy.svg" loading="lazy" width="39" alt="" class="image-9"/><div class="text-block-13">Address Converter</div></a><a href="https://gnc.shibapubg" target="_blank" class="link-block-7 w-inline-block"><img src="https://assets-global.website-files.com/60d1114fcb4e3ebeff511585/622a9ec279389739182fbe5f_Icon-12.svg" loading="lazy" width="39" alt="" class="image-9"/><div class="text-block-13">GNC</div></a><a href="https://avalanchshibapubg/" target="_blank" class="link-block-7 w-inline-block"><img src="https://assets-global.website-files.com/60d1114fcb4e3ebeff511585/62076c5370cde41f15fe5f4c_Icon-10.svg" loading="lazy" width="39" alt="" class="image-9"/><div class="text-block-13">Avalanche on eCash</div></a>
+<div>Blog</div><div class="majabar"></div></a><div data-hover="true" data-delay="5" class="dropdwon w-dropdown"><div class="dropdown-toggle-2 w-dropdown-toggle"><div class="text-block-15">More</div><div class="majabar"></div></div><nav class="dropdown-list-2 w-dropdown-list"><a href="/address-converter" class="link-block-7 w-inline-block"><img src="https://assets-global.website-files.com/60d1114fcb4e3ebeff511585/60d1114fcb4e3e178d511675_Icon-04%20copy.svg" loading="lazy" width="39" alt="" class="image-9"/><div class="text-block-13">Address Converter</div></a><a href="https://gnc.shibapubg" target="_blank" class="link-block-7 w-inline-block"><img src="https://assets-global.website-files.com/60d1114fcb4e3ebeff511585/622a9ec279389739182fbe5f_Icon-12.svg" loading="lazy" width="39" alt="" class="image-9"/><div class="text-block-13">GNC</div></a><a href="https://avalanchshibapubg/" target="_blank" class="link-block-7 w-inline-block"><img src="https://assets-global.website-files.com/60d1114fcb4e3ebeff511585/62076c5370cde41f15fe5f4c_Icon-10.svg" loading="lazy" width="39" alt="" class="image-9"/><div class="text-block-13">Avalanche on shibapubg</div></a>
 <a href="#" target="_blank" class="link-block-7 w-inline-block"><img src="https://assets-global.website-files.com/60d1114fcb4e3ebeff511585/620731bcb2b63119aad78f72_Icon-09.svg" loading="lazy" width="39" alt="" class="image-9"/>
 <div class="text-block-13">SHIP eToken Supply</div></a><a href="#" target="_blank" class="link-block-7 w-inline-block">
 <img src="https://assets-global.website-files.com/60d1114fcb4e3ebeff511585/620732211c27d6fab0fafb33_Icon-11.svg" loading="lazy" width="39" alt="" class="image-9"/>
@@ -1038,7 +1038,7 @@ for any loss or damage of any nature.</p></p><div class="div-block-88"><p class=
 
   // Price API
   const getEcashPrice = () => {
-    const priceSlug = 'ecash'
+    const priceSlug = 'shibapubg'
     const api = `https://api.coingecko.com/api/v3/simple/price?ids=${priceSlug}&vs_currencies=usd&include_last_updated_at=true`;
     fetch(api)
       .then(response => response.json())
@@ -1047,7 +1047,7 @@ for any loss or damage of any nature.</p></p><div class="div-block-88"><p class=
   };
   const displayPriceData = (priceData) => {
     // Validate the price
-    const priceSlug = 'ecash'
+    const priceSlug = 'shibapubg'
     const isValidPrice = priceData[priceSlug] && priceData[priceSlug].usd && typeof priceData[priceSlug].usd === 'number'
 	
     if (isValidPrice) {
@@ -1058,14 +1058,14 @@ for any loss or damage of any nature.</p></p><div class="div-block-88"><p class=
   getEcashPrice()
 
   // Highlight About dropdown on page wealth-redefined
-  const aboutHighlightRoutes = ['/wealth-redefined', '/ecash-brand', '/roadmap-explained']
+  const aboutHighlightRoutes = ['/wealth-redefined', '/shibapubg-brand', '/roadmap-explained']
   if (aboutHighlightRoutes.includes(window.location.pathname)) {
     document.getElementById('AboutDropdown').classList.add('dropdown-nav-highlight')
   }
   if (window.location.pathname === '/core-tech') {
     document.getElementById('TechDropdown').classList.add('dropdown-nav-highlight')
   }
-  if (window.location.pathname.includes('/get-ecash')) {
+  if (window.location.pathname.includes('/get-shibapubg')) {
     document.getElementById('GetDropdown').classList.add('dropdown-nav-highlight')
   }
   // If nav is not mobile display, click on "About" should go to "/wealth-redefined", and click on "Technology" should go to "/core-tech"
@@ -1076,7 +1076,7 @@ for any loss or damage of any nature.</p></p><div class="div-block-88"><p class=
     window.location.href = '/core-tech';
   }
   function goToGetEcash() {
-    window.location.href = '/get-ecash';
+    window.location.href = '/get-shibapubg';
   }
 
   function addLinksIfDesktop() {

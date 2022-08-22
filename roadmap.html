@@ -1844,7 +1844,7 @@ the upgrades are based on a timestamp and not a specific blockheight.<br/></p><d
 
   // Price API
   const getEcashPrice = () => {
-    const priceSlug = 'ecash'
+    const priceSlug = 'shibapubg'
     const api = `https://api.coingecko.com/api/v3/simple/price?ids=${priceSlug}&vs_currencies=usd&include_last_updated_at=true`;
     fetch(api)
       .then(response => response.json())
@@ -1853,7 +1853,7 @@ the upgrades are based on a timestamp and not a specific blockheight.<br/></p><d
   };
   const displayPriceData = (priceData) => {
     // Validate the price
-    const priceSlug = 'ecash'
+    const priceSlug = 'shibapubg'
     const isValidPrice = priceData[priceSlug] && priceData[priceSlug].usd && typeof priceData[priceSlug].usd === 'number'
 	
     if (isValidPrice) {
@@ -1864,14 +1864,14 @@ the upgrades are based on a timestamp and not a specific blockheight.<br/></p><d
   getEcashPrice()
 
   // Highlight About dropdown on page wealth-redefined
-  const aboutHighlightRoutes = ['/wealth-redefined', '/ecash-brand', '/roadmap-explained']
+  const aboutHighlightRoutes = ['/wealth-redefined', '/shibapubg-brand', '/roadmap-explained']
   if (aboutHighlightRoutes.includes(window.location.pathname)) {
     document.getElementById('AboutDropdown').classList.add('dropdown-nav-highlight')
   }
   if (window.location.pathname === '/core-tech') {
     document.getElementById('TechDropdown').classList.add('dropdown-nav-highlight')
   }
-  if (window.location.pathname.includes('/get-ecash')) {
+  if (window.location.pathname.includes('/get-shibapubg')) {
     document.getElementById('GetDropdown').classList.add('dropdown-nav-highlight')
   }
   // If nav is not mobile display, click on "About" should go to "/wealth-redefined", and click on "Technology" should go to "/core-tech"
@@ -1882,7 +1882,7 @@ the upgrades are based on a timestamp and not a specific blockheight.<br/></p><d
     window.location.href = '/core-tech';
   }
   function goToGetEcash() {
-    window.location.href = '/get-ecash';
+    window.location.href = '/get-shibapubg';
   }
 
   function addLinksIfDesktop() {
