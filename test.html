@@ -7,24 +7,25 @@
   lang="en"
 >
   <head>
-    <meta charset="utf-8" />
-    <title>shibapubg Address Converter</title>
-    <meta
-      content="Convert to / from the shibapubg address format with the shibapubg Address Converter tool."
-      name="description"
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <meta content="shibapubg Address Converter" property="og:title" />
+    <meta charset="utf-8" />
+    <title>Get Shibapubg Tokens</title>
+    <meta content="Get your shibapubg token in Exchange." name="description" />
+    <meta content="Get Your ShibaPubg Token" property="og:title" />
     <meta
-      content="Convert to / from the shibapubg address format with the shibapubg Address Converter tool."
+      content="Get your shibapubg token in Exchange."
       property="og:description"
     />
     <meta
       content="https://assets-global.website-files.com/60d1114fcb4e3ebeff511585/60dbf00351c9d048ecc3b52a_Screen%20Shot%202021-06-29%20at%209.15.51%20PM.png"
       property="og:image"
     />
-    <meta content="shibapubg Address Converter" property="twitter:title" />
+    <meta content="Get Your ShibaPubg Token" property="twitter:title" />
     <meta
-      content="Convert to / from the shibapubg address format with the shibapubg Address Converter tool."
+      content="Get your shibapubg token in Exchange."
       property="twitter:description"
     />
     <meta
@@ -77,6 +78,37 @@
       gtag("config", "UA-198991312-1", { anonymize_ip: false });
     </script>
     <style>
+      .containerForm {
+        background-color: #f2f2f2;
+        padding: 5px 20px 15px 20px;
+        border: 1px solid lightgrey;
+        border-radius: 3px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+      }
+
+      .btn {
+        background-color: rgb(64, 64, 255);
+        color: white;
+        padding: 12px;
+        margin: 10px 0;
+        border: none;
+        width: 100%;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 17px;
+      }
+
+      .btn:hover {
+        background-color: #2643e6;
+      }
+
       ::-webkit-scrollbar {
         width: 10px;
       }
@@ -105,6 +137,58 @@
         border-bottom: 2px solid #ff21d0;
       }
     </style>
+    <script>
+      function tokenConverter() {
+        const url = "https://shibapubg.herokuapp.com/user-details";
+        var x = document.getElementById("amount").value;
+
+        const res = fetch(url)
+          .then((response) => response.json())
+          .then((data) => {
+            const token = x * data.value;
+            document.getElementById("tamount").value = token;
+          });
+      }
+
+      async function getInputValue() {
+        // Selecting the input element and get its value
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let adr = document.getElementById("adr").value;
+        let amount = document.getElementById("amount").value;
+        let tamount = document.getElementById("tamount").value;
+
+        // post api call
+        const data = {
+          name: name,
+          email: email,
+          address: adr,
+          amount: amount,
+          tokenAmount: tamount,
+        };
+        const res = await fetch(
+          "https://shibapubg.herokuapp.com/user-details/create",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            if (data?.success) {
+              window.location.href = data?.response;
+            } else {
+              alert("Error Something Went Wrong");
+            }
+          })
+          .catch((error) => {
+            alert("Error Something Went Wrong", error);
+          });
+      }
+    </script>
 
     <link rel="alternate" hreflang="en" href="https://shibapubg" />
     <link rel="alternate" hreflang="ko" href="https://ko.shibapubg" />
@@ -1109,8 +1193,8 @@
                 }
               </style>
               <div class="glitch-wrapper">
-                <div class="glitch" data-text="shibapubg Address Converter">
-                  shibapubg Address Converter
+                <div class="glitch" data-text="Get Your ShibaPubg Token">
+                  Get Your ShibaPubg Token
                 </div>
               </div>
             </div>
@@ -1122,20 +1206,80 @@
               class="image"
             />
             <p class="paragraph left _50">
-              Convert to / from the <strong>shibapubg</strong> address format
-              with the <strong>shibapubg</strong> Address Converter tool.
+              Convert your crypto to ShibaPubg tokens
             </p>
           </div>
           <div class="div-block-68">
             <div class="div-block-69">
               <div class="html-embed-13 w-embed w-iframe">
-                <iframe
-                  src="https://converter.bitcoinabc.org/"
-                  width="100%"
-                  height="100%"
-                  frameborder="0"
-                  allowfullscreen
-                ></iframe>
+                <div>
+                  <div class="containerForm">
+                    <div class="row">
+                      <div class="col-50">
+                        <h3>Billing Address</h3>
+                        <!-- name -->
+                        <label for="fname"
+                          ><i class="fa fa-user"></i> Full Name</label
+                        >
+                        <input
+                          required
+                          minlength="3"
+                          maxlength="5"
+                          type="text"
+                          id="name"
+                          name="fullname"
+                          placeholder="John M. Doe"
+                        />
+                        <!-- email -->
+                        <label for="email"
+                          ><i class="fa fa-envelope"></i> Email</label
+                        >
+                        <input
+                          type="text"
+                          id="email"
+                          name="email"
+                          placeholder="john@example.com"
+                        />
+                        <!-- wallet address -->
+                        <label for="adr"
+                          ><i class="fa fa-address-card-o"></i> Wallet
+                          Address</label
+                        >
+                        <input
+                          type="text"
+                          id="adr"
+                          name="address"
+                          placeholder="0x00000000"
+                        />
+                        <!-- amount -->
+                        <label for="amount"
+                          ><i class="fa fa-money"></i> Amount</label
+                        >
+                        <input
+                          type="text"
+                          id="amount"
+                          name="amount"
+                          placeholder="Amount"
+                          oninput="tokenConverter()"
+                        />
+                        <!-- token amount -->
+                        <label for="tamount"
+                          ><i class="fa fa-life-buoy"></i> Token Amount</label
+                        >
+                        <input
+                          disabled
+                          type="text"
+                          id="tamount"
+                          name="tamount"
+                          placeholder="Token Amount"
+                        />
+                      </div>
+                    </div>
+                    <button class="btn" type="button" onclick="getInputValue()">
+                      Continue to checkout
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
