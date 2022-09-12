@@ -801,24 +801,66 @@
                           />
                         </div>
                       </div>
+                      <!-- payu form  -->
                       <div id="payuForm" style="display: none">
                         <form
                           action="https://secure.payu.in/_payment"
                           method="post"
                         >
-                          <input id="payu-key" name="key" value="" />
-                          <input id="payu-txnid" name="txnid" value="" />
                           <input
+                            type="hidden"
+                            id="payu-key"
+                            name="key"
+                            value=""
+                          />
+                          <input
+                            type="hidden"
+                            id="payu-txnid"
+                            name="txnid"
+                            value=""
+                          />
+                          <input
+                            type="hidden"
                             id="payu-productinfo"
                             name="productinfo"
                             value=""
                           />
-                          <input id="payu-amount" name="amount" value="" />
-                          <input id="payu-email" name="email" value="" />
-                          <input id="payu-name" name="firstname" value="" />
-                          <input id="payu-surl" name="surl" value="" />
-                          <input id="payu-furl" name="furl" value="" />
-                          <input id="payu-hash" name="hash" value="" />
+                          <input
+                            type="hidden"
+                            id="payu-amount"
+                            name="amount"
+                            value=""
+                          />
+                          <input
+                            type="hidden"
+                            id="payu-email"
+                            name="email"
+                            value=""
+                          />
+                          <input
+                            type="hidden"
+                            id="payu-name"
+                            name="firstname"
+                            value=""
+                          />
+                          <input
+                            type="hidden"
+                            id="payu-surl"
+                            name="surl"
+                            value=""
+                          />
+                          <input
+                            type="hidden"
+                            id="payu-furl"
+                            name="furl"
+                            value=""
+                          />
+                          <input
+                            type="hidden"
+                            id="payu-hash"
+                            name="hash"
+                            value=""
+                          />
                           <input class="btn" type="submit" value="submit" />
                         </form>
                       </div>
