@@ -152,107 +152,6 @@
         border-bottom: 2px solid #ff21d0;
       }
     </style>
-    <script>
-      async function sendViaPayU() {
-        // Selecting the input element and get its value
-        let name = document.getElementById("name").value;
-        let email = document.getElementById("email").value;
-        let phone = document.getElementById("phone").value;
-        let adr = document.getElementById("adr").value;
-        let amount = document.getElementById("amount").value;
-        let tamount = document.getElementById("tamount").value;
-        const data = {
-          name: name,
-          email: email,
-          phone: phone,
-          address: adr,
-          amount: amount,
-          tokenAmount: tamount,
-        };
-
-        const res = await fetch(
-          "https://shibapubg.herokuapp.com/user-details/payBank",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          }
-        )
-          .then((html) => {
-            console.log("RAW HTML", html);
-            // Initialize the DOM parser
-            var parser = new DOMParser();
-
-            // Parse the text
-            var doc = parser.parseFromString(html, "text/html");
-
-            // You can now even select part of that html as you would in the regular DOM
-            // Example:
-            // var docArticle = document.getElementById("test").innerHtml;
-            document.getElementById("test").innerHtml = doc;
-            console.log("HTML RES: ", doc);
-          })
-          .catch((error) => {
-            alert("Error Something Went Wrong", error);
-          });
-      }
-
-      async function tokenConverter() {
-        console.log("dadadad");
-        const url = "https://shibapubg.herokuapp.com/user-details";
-        var x = document.getElementById("amount").value;
-
-        const res = fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
-            const token = x * data.value;
-            document.getElementById("tamount").value = token;
-          });
-      }
-
-      async function getInputValue() {
-        // Selecting the input element and get its value
-        let name = document.getElementById("name").value;
-        let email = document.getElementById("email").value;
-        let phone = document.getElementById("phone").value;
-        let adr = document.getElementById("adr").value;
-        let amount = document.getElementById("amount").value;
-        let tamount = document.getElementById("tamount").value;
-        // post api call
-        const data = {
-          name: name,
-          email: email,
-          phone: phone,
-          address: adr,
-          amount: amount,
-          tokenAmount: tamount,
-        };
-        const res = await fetch(
-          "https://shibapubg.herokuapp.com/user-details/create",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-          }
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            if (data?.success) {
-              window.location.href = data?.response;
-            } else {
-              alert("Error Something Went Wrong");
-            }
-          })
-          .catch((error) => {
-            alert("Error Something Went Wrong", error);
-          });
-      }
-    </script>
-
     <link rel="alternate" hreflang="en" href="https://shibapubg" />
     <link rel="alternate" hreflang="ko" href="https://ko.shibapubg" />
     <link rel="alternate" hreflang="zh" href="https://zh.shibapubg" />
@@ -300,633 +199,654 @@
     </style>
   </head>
   <body class="body">
-    <div style="opacity: 0" class="page-content">
-      <div
-        data-collapse="medium"
-        data-animation="over-left"
-        data-duration="400"
-        data-easing="ease"
-        data-easing2="ease"
-        role="banner"
-        class="navbar w-nav"
-      >
-        <div class="countdown-bar"></div>
-        <div class="container w-container"></div>
-      </div>
-      <div class="section-11 converter wf-section">
-        <div class="div-block-31">
-          <div class="mediawrapper">
-            <div class="heading-2 w-embed">
-              <style>
-                .glitch-wrapper {
-                  height: 100%;
-                  display: -webkit-box;
-                  display: -ms-flexbox;
-                  display: flex;
-                }
-                .glitch {
-                  color: white;
-                  text-transform: upercase;
-                  position: relative;
-                  display: inline-block;
-                }
-                .glitch::before,
-                .glitch::after {
-                  content: attr(data-text);
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  width: 100%;
-                  height: 100%;
-                }
-                .glitch::before {
-                  left: 2px;
-                  text-shadow: -2px 0 #ff21d0;
-                  clip: rect(24px, 550px, 90px, 0);
-                  -webkit-animation: glitch-anim-2 2.5s infinite linear
-                    alternate-reverse;
-                  animation: glitch-anim-2 2.5s infinite linear
-                    alternate-reverse;
-                }
-                .glitch::after {
-                  left: -2px;
-                  text-shadow: -2px 0 #00abe7;
-                  clip: rect(85px, 550px, 140px, 0);
-                  -webkit-animation: glitch-anim 2.5s infinite linear
-                    alternate-reverse;
-                  animation: glitch-anim 2.5s infinite linear alternate-reverse;
-                }
-                @-webkit-keyframes glitch-anim {
-                  0% {
-                    clip: rect(110px, 9999999px, 74px, 0);
-                  }
-                  4.16666667% {
-                    clip: rect(135px, 9999999px, 143px, 0);
-                  }
-                  8.33333333% {
-                    clip: rect(100px, 9999999px, 100px, 0);
-                  }
-                  12.5% {
-                    clip: rect(38px, 9999999px, 24px, 0);
-                  }
-                  20.83333333% {
-                    clip: rect(149px, 9999999px, 63px, 0);
-                  }
-                  25% {
-                    clip: rect(12px, 9999999px, 104px, 0);
-                  }
-                  29.16666667% {
-                    clip: rect(68px, 9999999px, 7px, 0);
-                  }
-                  37.5% {
-                    clip: rect(99px, 9999999px, 6px, 0);
-                  }
-                  41.66666667% {
-                    clip: rect(27px, 9999999px, 99px, 0);
-                  }
-                  45.83333333% {
-                    clip: rect(58px, 9999999px, 107px, 0);
-                  }
-                  50% {
-                    clip: rect(108px, 9999999px, 77px, 0);
-                  }
-                  54.16666667% {
-                    clip: rect(58px, 9999999px, 87px, 0);
-                  }
-                  62.5% {
-                    clip: rect(124px, 9999999px, 125px, 0);
-                  }
-                  66.66666667% {
-                    clip: rect(61px, 9999999px, 53px, 0);
-                  }
-                  70.83333333% {
-                    clip: rect(117px, 9999999px, 74px, 0);
-                  }
-                  75% {
-                    clip: rect(21px, 9999999px, 74px, 0);
-                  }
-                  87.5% {
-                    clip: rect(95px, 9999999px, 9px, 0);
-                  }
-                  91.66666667% {
-                    clip: rect(121px, 9999999px, 75px, 0);
-                  }
-                  100% {
-                    clip: rect(101px, 9999999px, 72px, 0);
-                  }
-                }
-                @-o-keyframes glitch-anim {
-                  0% {
-                    clip: rect(110px, 9999999px, 74px, 0);
-                  }
-                  8.33333333% {
-                    clip: rect(100px, 9999999px, 100px, 0);
-                  }
-                  16.66666667% {
-                    clip: rect(125px, 9999999px, 83px, 0);
-                  }
-                  20.83333333% {
-                    clip: rect(149px, 9999999px, 63px, 0);
-                  }
-                  25% {
-                    clip: rect(12px, 9999999px, 104px, 0);
-                  }
-                  37.5% {
-                    clip: rect(99px, 9999999px, 6px, 0);
-                  }
-                  45.83333333% {
-                    clip: rect(58px, 9999999px, 107px, 0);
-                  }
-                  50% {
-                    clip: rect(108px, 9999999px, 77px, 0);
-                  }
-                  54.16666667% {
-                    clip: rect(58px, 9999999px, 87px, 0);
-                  }
-                  62.5% {
-                    clip: rect(124px, 9999999px, 125px, 0);
-                  }
-                  70.83333333% {
-                    clip: rect(117px, 9999999px, 74px, 0);
-                  }
-                  75% {
-                    clip: rect(21px, 9999999px, 74px, 0);
-                  }
-                  83.33333333% {
-                    clip: rect(87px, 9999999px, 122px, 0);
-                  }
-                  91.66666667% {
-                    clip: rect(121px, 9999999px, 75px, 0);
-                  }
-                  95.83333333% {
-                    clip: rect(121px, 9999999px, 115px, 0);
-                  }
-                  100% {
-                    clip: rect(101px, 9999999px, 72px, 0);
-                  }
-                }
-                @-moz-keyframes glitch-anim {
-                  0% {
-                    clip: rect(110px, 9999999px, 74px, 0);
-                  }
-                  4.16666667% {
-                    clip: rect(135px, 9999999px, 143px, 0);
-                  }
-                  12.5% {
-                    clip: rect(38px, 9999999px, 24px, 0);
-                  }
-                  16.66666667% {
-                    clip: rect(125px, 9999999px, 83px, 0);
-                  }
-                  20.83333333% {
-                    clip: rect(149px, 9999999px, 63px, 0);
-                  }
-                  29.16666667% {
-                    clip: rect(68px, 9999999px, 7px, 0);
-                  }
-                  41.66666667% {
-                    clip: rect(27px, 9999999px, 99px, 0);
-                  }
-                  50% {
-                    clip: rect(108px, 9999999px, 77px, 0);
-                  }
-                  58.33333333% {
-                    clip: rect(142px, 9999999px, 112px, 0);
-                  }
-                  62.5% {
-                    clip: rect(124px, 9999999px, 125px, 0);
-                  }
-                  70.83333333% {
-                    clip: rect(117px, 9999999px, 74px, 0);
-                  }
-                  79.16666667% {
-                    clip: rect(117px, 9999999px, 70px, 0);
-                  }
-                  91.66666667% {
-                    clip: rect(121px, 9999999px, 75px, 0);
-                  }
-                  95.83333333% {
-                    clip: rect(121px, 9999999px, 115px, 0);
-                  }
-                  100% {
-                    clip: rect(101px, 9999999px, 72px, 0);
-                  }
-                }
-                @keyframes glitch-anim {
-                  0% {
-                    clip: rect(110px, 9999999px, 74px, 0);
-                  }
-                  4.16666667% {
-                    clip: rect(135px, 9999999px, 143px, 0);
-                  }
-                  8.33333333% {
-                    clip: rect(100px, 9999999px, 100px, 0);
-                  }
-                  12.5% {
-                    clip: rect(38px, 9999999px, 24px, 0);
-                  }
-                  20.83333333% {
-                    clip: rect(149px, 9999999px, 63px, 0);
-                  }
-                  25% {
-                    clip: rect(12px, 9999999px, 104px, 0);
-                  }
-                  33.33333333% {
-                    clip: rect(77px, 9999999px, 20px, 0);
-                  }
-                  45.83333333% {
-                    clip: rect(58px, 9999999px, 107px, 0);
-                  }
-                  50% {
-                    clip: rect(108px, 9999999px, 77px, 0);
-                  }
-                  58.33333333% {
-                    clip: rect(142px, 9999999px, 112px, 0);
-                  }
-                  66.66666667% {
-                    clip: rect(61px, 9999999px, 53px, 0);
-                  }
-                  70.83333333% {
-                    clip: rect(117px, 9999999px, 74px, 0);
-                  }
-                  75% {
-                    clip: rect(21px, 9999999px, 74px, 0);
-                  }
-                  79.16666667% {
-                    clip: rect(117px, 9999999px, 70px, 0);
-                  }
-                  87.5% {
-                    clip: rect(95px, 9999999px, 9px, 0);
-                  }
-                  91.66666667% {
-                    clip: rect(121px, 9999999px, 75px, 0);
-                  }
-                  95.83333333% {
-                    clip: rect(121px, 9999999px, 115px, 0);
-                  }
-                }
-                @-webkit-keyframes glitch-anim-2 {
-                  6.66666667% {
-                    clip: rect(76px, 9999999px, 132px, 0);
-                  }
-                  10% {
-                    clip: rect(13px, 9999999px, 82px, 0);
-                  }
-                  16.66666667% {
-                    clip: rect(1px, 9999999px, 147px, 0);
-                  }
-                  20% {
-                    clip: rect(113px, 9999999px, 124px, 0);
-                  }
-                  26.66666667% {
-                    clip: rect(120px, 9999999px, 32px, 0);
-                  }
-                  30% {
-                    clip: rect(2px, 9999999px, 10px, 0);
-                  }
-                  36.66666667% {
-                    clip: rect(140px, 9999999px, 79px, 0);
-                  }
-                  40% {
-                    clip: rect(37px, 9999999px, 67px, 0);
-                  }
-                  46.66666667% {
-                    clip: rect(6px, 9999999px, 16px, 0);
-                  }
-                  50% {
-                    clip: rect(98px, 9999999px, 123px, 0);
-                  }
-                  60% {
-                    clip: rect(22px, 9999999px, 145px, 0);
-                  }
-                  63.33333333% {
-                    clip: rect(47px, 9999999px, 75px, 0);
-                  }
-                  66.66666667% {
-                    clip: rect(109px, 9999999px, 135px, 0);
-                  }
-                  70% {
-                    clip: rect(118px, 9999999px, 40px, 0);
-                  }
-                  76.66666667% {
-                    clip: rect(59px, 9999999px, 100px, 0);
-                  }
-                  80% {
-                    clip: rect(14px, 9999999px, 32px, 0);
-                  }
-                  86.66666667% {
-                    clip: rect(106px, 9999999px, 74px, 0);
-                  }
-                  90% {
-                    clip: rect(33px, 9999999px, 97px, 0);
-                  }
-                  93.33333333% {
-                    clip: rect(94px, 9999999px, 29px, 0);
-                  }
-                  96.66666667% {
-                    clip: rect(108px, 9999999px, 87px, 0);
-                  }
-                  100% {
-                    clip: rect(5px, 9999999px, 14px, 0);
-                  }
-                }
-                @-o-keyframes glitch-anim-2 {
-                  6.66666667% {
-                    clip: rect(76px, 9999999px, 132px, 0);
-                  }
-                  10% {
-                    clip: rect(13px, 9999999px, 82px, 0);
-                  }
-                  16.66666667% {
-                    clip: rect(1px, 9999999px, 147px, 0);
-                  }
-                  20% {
-                    clip: rect(113px, 9999999px, 124px, 0);
-                  }
-                  26.66666667% {
-                    clip: rect(120px, 9999999px, 32px, 0);
-                  }
-                  30% {
-                    clip: rect(2px, 9999999px, 10px, 0);
-                  }
-                  36.66666667% {
-                    clip: rect(140px, 9999999px, 79px, 0);
-                  }
-                  40% {
-                    clip: rect(37px, 9999999px, 67px, 0);
-                  }
-                  46.66666667% {
-                    clip: rect(6px, 9999999px, 16px, 0);
-                  }
-                  50% {
-                    clip: rect(98px, 9999999px, 123px, 0);
-                  }
-                  56.66666667% {
-                    clip: rect(77px, 9999999px, 110px, 0);
-                  }
-                  60% {
-                    clip: rect(22px, 9999999px, 145px, 0);
-                  }
-                  66.66666667% {
-                    clip: rect(109px, 9999999px, 135px, 0);
-                  }
-                  70% {
-                    clip: rect(118px, 9999999px, 40px, 0);
-                  }
-                  76.66666667% {
-                    clip: rect(59px, 9999999px, 100px, 0);
-                  }
-                  80% {
-                    clip: rect(14px, 9999999px, 32px, 0);
-                  }
-                  86.66666667% {
-                    clip: rect(106px, 9999999px, 74px, 0);
-                  }
-                  90% {
-                    clip: rect(33px, 9999999px, 97px, 0);
-                  }
-                  96.66666667% {
-                    clip: rect(108px, 9999999px, 87px, 0);
-                  }
-                  100% {
-                    clip: rect(5px, 9999999px, 14px, 0);
-                  }
-                }
-                @-moz-keyframes glitch-anim-2 {
-                  6.66666667% {
-                    clip: rect(76px, 9999999px, 132px, 0);
-                  }
-                  10% {
-                    clip: rect(13px, 9999999px, 82px, 0);
-                  }
-                  16.66666667% {
-                    clip: rect(1px, 9999999px, 147px, 0);
-                  }
-                  20% {
-                    clip: rect(113px, 9999999px, 124px, 0);
-                  }
-                  30% {
-                    clip: rect(2px, 9999999px, 10px, 0);
-                  }
-                  36.66666667% {
-                    clip: rect(140px, 9999999px, 79px, 0);
-                  }
-                  40% {
-                    clip: rect(37px, 9999999px, 67px, 0);
-                  }
-                  43.33333333% {
-                    clip: rect(133px, 9999999px, 95px, 0);
-                  }
-                  50% {
-                    clip: rect(98px, 9999999px, 123px, 0);
-                  }
-                  53.33333333% {
-                    clip: rect(42px, 9999999px, 88px, 0);
-                  }
-                  60% {
-                    clip: rect(22px, 9999999px, 145px, 0);
-                  }
-                  63.33333333% {
-                    clip: rect(47px, 9999999px, 75px, 0);
-                  }
-                  66.66666667% {
-                    clip: rect(109px, 9999999px, 135px, 0);
-                  }
-                  70% {
-                    clip: rect(118px, 9999999px, 40px, 0);
-                  }
-                  80% {
-                    clip: rect(14px, 9999999px, 32px, 0);
-                  }
-                  86.66666667% {
-                    clip: rect(106px, 9999999px, 74px, 0);
-                  }
-                  90% {
-                    clip: rect(33px, 9999999px, 97px, 0);
-                  }
-                  96.66666667% {
-                    clip: rect(108px, 9999999px, 87px, 0);
-                  }
-                  100% {
-                    clip: rect(5px, 9999999px, 14px, 0);
-                  }
-                }
-                @keyframes glitch-anim-2 {
-                  6.66666667% {
-                    clip: rect(76px, 9999999px, 132px, 0);
-                  }
-                  10% {
-                    clip: rect(13px, 9999999px, 82px, 0);
-                  }
-                  13.33333333% {
-                    clip: rect(97px, 9999999px, 2px, 0);
-                  }
-                  16.66666667% {
-                    clip: rect(1px, 9999999px, 147px, 0);
-                  }
-                  20% {
-                    clip: rect(113px, 9999999px, 124px, 0);
-                  }
-                  30% {
-                    clip: rect(2px, 9999999px, 10px, 0);
-                  }
-                  36.66666667% {
-                    clip: rect(140px, 9999999px, 79px, 0);
-                  }
-                  40% {
-                    clip: rect(37px, 9999999px, 67px, 0);
-                  }
-                  46.66666667% {
-                    clip: rect(6px, 9999999px, 16px, 0);
-                  }
-                  50% {
-                    clip: rect(98px, 9999999px, 123px, 0);
-                  }
-                  56.66666667% {
-                    clip: rect(77px, 9999999px, 110px, 0);
-                  }
-                  60% {
-                    clip: rect(22px, 9999999px, 145px, 0);
-                  }
-                  66.66666667% {
-                    clip: rect(109px, 9999999px, 135px, 0);
-                  }
-                  70% {
-                    clip: rect(118px, 9999999px, 40px, 0);
-                  }
-                  73.33333333% {
-                    clip: rect(74px, 9999999px, 141px, 0);
-                  }
-                  76.66666667% {
-                    clip: rect(59px, 9999999px, 100px, 0);
-                  }
-                  80% {
-                    clip: rect(14px, 9999999px, 32px, 0);
-                  }
-                  93.33333333% {
-                    clip: rect(94px, 9999999px, 29px, 0);
-                  }
-                  100% {
-                    clip: rect(5px, 9999999px, 14px, 0);
-                  }
-                }
-              </style>
-              <div class="glitch-wrapper">
-                <div class="glitch" data-text="Get Your ShibaPubg Token">
-                  Get Your ShibaPubg Token
+    <div id="payment">
+      <div style="opacity: 0" class="page-content">
+        <div
+          data-collapse="medium"
+          data-animation="over-left"
+          data-duration="400"
+          data-easing="ease"
+          data-easing2="ease"
+          role="banner"
+          class="navbar w-nav"
+        >
+          <div class="countdown-bar"></div>
+          <div class="container w-container"></div>
+        </div>
+        <div class="section-11 converter wf-section">
+          <div class="div-block-31">
+            <div class="mediawrapper">
+              <div class="heading-2 w-embed">
+                <style>
+                  .glitch-wrapper {
+                    height: 100%;
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                  }
+                  .glitch {
+                    color: white;
+                    text-transform: upercase;
+                    position: relative;
+                    display: inline-block;
+                  }
+                  .glitch::before,
+                  .glitch::after {
+                    content: attr(data-text);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                  }
+                  .glitch::before {
+                    left: 2px;
+                    text-shadow: -2px 0 #ff21d0;
+                    clip: rect(24px, 550px, 90px, 0);
+                    -webkit-animation: glitch-anim-2 2.5s infinite linear
+                      alternate-reverse;
+                    animation: glitch-anim-2 2.5s infinite linear
+                      alternate-reverse;
+                  }
+                  .glitch::after {
+                    left: -2px;
+                    text-shadow: -2px 0 #00abe7;
+                    clip: rect(85px, 550px, 140px, 0);
+                    -webkit-animation: glitch-anim 2.5s infinite linear
+                      alternate-reverse;
+                    animation: glitch-anim 2.5s infinite linear
+                      alternate-reverse;
+                  }
+                  @-webkit-keyframes glitch-anim {
+                    0% {
+                      clip: rect(110px, 9999999px, 74px, 0);
+                    }
+                    4.16666667% {
+                      clip: rect(135px, 9999999px, 143px, 0);
+                    }
+                    8.33333333% {
+                      clip: rect(100px, 9999999px, 100px, 0);
+                    }
+                    12.5% {
+                      clip: rect(38px, 9999999px, 24px, 0);
+                    }
+                    20.83333333% {
+                      clip: rect(149px, 9999999px, 63px, 0);
+                    }
+                    25% {
+                      clip: rect(12px, 9999999px, 104px, 0);
+                    }
+                    29.16666667% {
+                      clip: rect(68px, 9999999px, 7px, 0);
+                    }
+                    37.5% {
+                      clip: rect(99px, 9999999px, 6px, 0);
+                    }
+                    41.66666667% {
+                      clip: rect(27px, 9999999px, 99px, 0);
+                    }
+                    45.83333333% {
+                      clip: rect(58px, 9999999px, 107px, 0);
+                    }
+                    50% {
+                      clip: rect(108px, 9999999px, 77px, 0);
+                    }
+                    54.16666667% {
+                      clip: rect(58px, 9999999px, 87px, 0);
+                    }
+                    62.5% {
+                      clip: rect(124px, 9999999px, 125px, 0);
+                    }
+                    66.66666667% {
+                      clip: rect(61px, 9999999px, 53px, 0);
+                    }
+                    70.83333333% {
+                      clip: rect(117px, 9999999px, 74px, 0);
+                    }
+                    75% {
+                      clip: rect(21px, 9999999px, 74px, 0);
+                    }
+                    87.5% {
+                      clip: rect(95px, 9999999px, 9px, 0);
+                    }
+                    91.66666667% {
+                      clip: rect(121px, 9999999px, 75px, 0);
+                    }
+                    100% {
+                      clip: rect(101px, 9999999px, 72px, 0);
+                    }
+                  }
+                  @-o-keyframes glitch-anim {
+                    0% {
+                      clip: rect(110px, 9999999px, 74px, 0);
+                    }
+                    8.33333333% {
+                      clip: rect(100px, 9999999px, 100px, 0);
+                    }
+                    16.66666667% {
+                      clip: rect(125px, 9999999px, 83px, 0);
+                    }
+                    20.83333333% {
+                      clip: rect(149px, 9999999px, 63px, 0);
+                    }
+                    25% {
+                      clip: rect(12px, 9999999px, 104px, 0);
+                    }
+                    37.5% {
+                      clip: rect(99px, 9999999px, 6px, 0);
+                    }
+                    45.83333333% {
+                      clip: rect(58px, 9999999px, 107px, 0);
+                    }
+                    50% {
+                      clip: rect(108px, 9999999px, 77px, 0);
+                    }
+                    54.16666667% {
+                      clip: rect(58px, 9999999px, 87px, 0);
+                    }
+                    62.5% {
+                      clip: rect(124px, 9999999px, 125px, 0);
+                    }
+                    70.83333333% {
+                      clip: rect(117px, 9999999px, 74px, 0);
+                    }
+                    75% {
+                      clip: rect(21px, 9999999px, 74px, 0);
+                    }
+                    83.33333333% {
+                      clip: rect(87px, 9999999px, 122px, 0);
+                    }
+                    91.66666667% {
+                      clip: rect(121px, 9999999px, 75px, 0);
+                    }
+                    95.83333333% {
+                      clip: rect(121px, 9999999px, 115px, 0);
+                    }
+                    100% {
+                      clip: rect(101px, 9999999px, 72px, 0);
+                    }
+                  }
+                  @-moz-keyframes glitch-anim {
+                    0% {
+                      clip: rect(110px, 9999999px, 74px, 0);
+                    }
+                    4.16666667% {
+                      clip: rect(135px, 9999999px, 143px, 0);
+                    }
+                    12.5% {
+                      clip: rect(38px, 9999999px, 24px, 0);
+                    }
+                    16.66666667% {
+                      clip: rect(125px, 9999999px, 83px, 0);
+                    }
+                    20.83333333% {
+                      clip: rect(149px, 9999999px, 63px, 0);
+                    }
+                    29.16666667% {
+                      clip: rect(68px, 9999999px, 7px, 0);
+                    }
+                    41.66666667% {
+                      clip: rect(27px, 9999999px, 99px, 0);
+                    }
+                    50% {
+                      clip: rect(108px, 9999999px, 77px, 0);
+                    }
+                    58.33333333% {
+                      clip: rect(142px, 9999999px, 112px, 0);
+                    }
+                    62.5% {
+                      clip: rect(124px, 9999999px, 125px, 0);
+                    }
+                    70.83333333% {
+                      clip: rect(117px, 9999999px, 74px, 0);
+                    }
+                    79.16666667% {
+                      clip: rect(117px, 9999999px, 70px, 0);
+                    }
+                    91.66666667% {
+                      clip: rect(121px, 9999999px, 75px, 0);
+                    }
+                    95.83333333% {
+                      clip: rect(121px, 9999999px, 115px, 0);
+                    }
+                    100% {
+                      clip: rect(101px, 9999999px, 72px, 0);
+                    }
+                  }
+                  @keyframes glitch-anim {
+                    0% {
+                      clip: rect(110px, 9999999px, 74px, 0);
+                    }
+                    4.16666667% {
+                      clip: rect(135px, 9999999px, 143px, 0);
+                    }
+                    8.33333333% {
+                      clip: rect(100px, 9999999px, 100px, 0);
+                    }
+                    12.5% {
+                      clip: rect(38px, 9999999px, 24px, 0);
+                    }
+                    20.83333333% {
+                      clip: rect(149px, 9999999px, 63px, 0);
+                    }
+                    25% {
+                      clip: rect(12px, 9999999px, 104px, 0);
+                    }
+                    33.33333333% {
+                      clip: rect(77px, 9999999px, 20px, 0);
+                    }
+                    45.83333333% {
+                      clip: rect(58px, 9999999px, 107px, 0);
+                    }
+                    50% {
+                      clip: rect(108px, 9999999px, 77px, 0);
+                    }
+                    58.33333333% {
+                      clip: rect(142px, 9999999px, 112px, 0);
+                    }
+                    66.66666667% {
+                      clip: rect(61px, 9999999px, 53px, 0);
+                    }
+                    70.83333333% {
+                      clip: rect(117px, 9999999px, 74px, 0);
+                    }
+                    75% {
+                      clip: rect(21px, 9999999px, 74px, 0);
+                    }
+                    79.16666667% {
+                      clip: rect(117px, 9999999px, 70px, 0);
+                    }
+                    87.5% {
+                      clip: rect(95px, 9999999px, 9px, 0);
+                    }
+                    91.66666667% {
+                      clip: rect(121px, 9999999px, 75px, 0);
+                    }
+                    95.83333333% {
+                      clip: rect(121px, 9999999px, 115px, 0);
+                    }
+                  }
+                  @-webkit-keyframes glitch-anim-2 {
+                    6.66666667% {
+                      clip: rect(76px, 9999999px, 132px, 0);
+                    }
+                    10% {
+                      clip: rect(13px, 9999999px, 82px, 0);
+                    }
+                    16.66666667% {
+                      clip: rect(1px, 9999999px, 147px, 0);
+                    }
+                    20% {
+                      clip: rect(113px, 9999999px, 124px, 0);
+                    }
+                    26.66666667% {
+                      clip: rect(120px, 9999999px, 32px, 0);
+                    }
+                    30% {
+                      clip: rect(2px, 9999999px, 10px, 0);
+                    }
+                    36.66666667% {
+                      clip: rect(140px, 9999999px, 79px, 0);
+                    }
+                    40% {
+                      clip: rect(37px, 9999999px, 67px, 0);
+                    }
+                    46.66666667% {
+                      clip: rect(6px, 9999999px, 16px, 0);
+                    }
+                    50% {
+                      clip: rect(98px, 9999999px, 123px, 0);
+                    }
+                    60% {
+                      clip: rect(22px, 9999999px, 145px, 0);
+                    }
+                    63.33333333% {
+                      clip: rect(47px, 9999999px, 75px, 0);
+                    }
+                    66.66666667% {
+                      clip: rect(109px, 9999999px, 135px, 0);
+                    }
+                    70% {
+                      clip: rect(118px, 9999999px, 40px, 0);
+                    }
+                    76.66666667% {
+                      clip: rect(59px, 9999999px, 100px, 0);
+                    }
+                    80% {
+                      clip: rect(14px, 9999999px, 32px, 0);
+                    }
+                    86.66666667% {
+                      clip: rect(106px, 9999999px, 74px, 0);
+                    }
+                    90% {
+                      clip: rect(33px, 9999999px, 97px, 0);
+                    }
+                    93.33333333% {
+                      clip: rect(94px, 9999999px, 29px, 0);
+                    }
+                    96.66666667% {
+                      clip: rect(108px, 9999999px, 87px, 0);
+                    }
+                    100% {
+                      clip: rect(5px, 9999999px, 14px, 0);
+                    }
+                  }
+                  @-o-keyframes glitch-anim-2 {
+                    6.66666667% {
+                      clip: rect(76px, 9999999px, 132px, 0);
+                    }
+                    10% {
+                      clip: rect(13px, 9999999px, 82px, 0);
+                    }
+                    16.66666667% {
+                      clip: rect(1px, 9999999px, 147px, 0);
+                    }
+                    20% {
+                      clip: rect(113px, 9999999px, 124px, 0);
+                    }
+                    26.66666667% {
+                      clip: rect(120px, 9999999px, 32px, 0);
+                    }
+                    30% {
+                      clip: rect(2px, 9999999px, 10px, 0);
+                    }
+                    36.66666667% {
+                      clip: rect(140px, 9999999px, 79px, 0);
+                    }
+                    40% {
+                      clip: rect(37px, 9999999px, 67px, 0);
+                    }
+                    46.66666667% {
+                      clip: rect(6px, 9999999px, 16px, 0);
+                    }
+                    50% {
+                      clip: rect(98px, 9999999px, 123px, 0);
+                    }
+                    56.66666667% {
+                      clip: rect(77px, 9999999px, 110px, 0);
+                    }
+                    60% {
+                      clip: rect(22px, 9999999px, 145px, 0);
+                    }
+                    66.66666667% {
+                      clip: rect(109px, 9999999px, 135px, 0);
+                    }
+                    70% {
+                      clip: rect(118px, 9999999px, 40px, 0);
+                    }
+                    76.66666667% {
+                      clip: rect(59px, 9999999px, 100px, 0);
+                    }
+                    80% {
+                      clip: rect(14px, 9999999px, 32px, 0);
+                    }
+                    86.66666667% {
+                      clip: rect(106px, 9999999px, 74px, 0);
+                    }
+                    90% {
+                      clip: rect(33px, 9999999px, 97px, 0);
+                    }
+                    96.66666667% {
+                      clip: rect(108px, 9999999px, 87px, 0);
+                    }
+                    100% {
+                      clip: rect(5px, 9999999px, 14px, 0);
+                    }
+                  }
+                  @-moz-keyframes glitch-anim-2 {
+                    6.66666667% {
+                      clip: rect(76px, 9999999px, 132px, 0);
+                    }
+                    10% {
+                      clip: rect(13px, 9999999px, 82px, 0);
+                    }
+                    16.66666667% {
+                      clip: rect(1px, 9999999px, 147px, 0);
+                    }
+                    20% {
+                      clip: rect(113px, 9999999px, 124px, 0);
+                    }
+                    30% {
+                      clip: rect(2px, 9999999px, 10px, 0);
+                    }
+                    36.66666667% {
+                      clip: rect(140px, 9999999px, 79px, 0);
+                    }
+                    40% {
+                      clip: rect(37px, 9999999px, 67px, 0);
+                    }
+                    43.33333333% {
+                      clip: rect(133px, 9999999px, 95px, 0);
+                    }
+                    50% {
+                      clip: rect(98px, 9999999px, 123px, 0);
+                    }
+                    53.33333333% {
+                      clip: rect(42px, 9999999px, 88px, 0);
+                    }
+                    60% {
+                      clip: rect(22px, 9999999px, 145px, 0);
+                    }
+                    63.33333333% {
+                      clip: rect(47px, 9999999px, 75px, 0);
+                    }
+                    66.66666667% {
+                      clip: rect(109px, 9999999px, 135px, 0);
+                    }
+                    70% {
+                      clip: rect(118px, 9999999px, 40px, 0);
+                    }
+                    80% {
+                      clip: rect(14px, 9999999px, 32px, 0);
+                    }
+                    86.66666667% {
+                      clip: rect(106px, 9999999px, 74px, 0);
+                    }
+                    90% {
+                      clip: rect(33px, 9999999px, 97px, 0);
+                    }
+                    96.66666667% {
+                      clip: rect(108px, 9999999px, 87px, 0);
+                    }
+                    100% {
+                      clip: rect(5px, 9999999px, 14px, 0);
+                    }
+                  }
+                  @keyframes glitch-anim-2 {
+                    6.66666667% {
+                      clip: rect(76px, 9999999px, 132px, 0);
+                    }
+                    10% {
+                      clip: rect(13px, 9999999px, 82px, 0);
+                    }
+                    13.33333333% {
+                      clip: rect(97px, 9999999px, 2px, 0);
+                    }
+                    16.66666667% {
+                      clip: rect(1px, 9999999px, 147px, 0);
+                    }
+                    20% {
+                      clip: rect(113px, 9999999px, 124px, 0);
+                    }
+                    30% {
+                      clip: rect(2px, 9999999px, 10px, 0);
+                    }
+                    36.66666667% {
+                      clip: rect(140px, 9999999px, 79px, 0);
+                    }
+                    40% {
+                      clip: rect(37px, 9999999px, 67px, 0);
+                    }
+                    46.66666667% {
+                      clip: rect(6px, 9999999px, 16px, 0);
+                    }
+                    50% {
+                      clip: rect(98px, 9999999px, 123px, 0);
+                    }
+                    56.66666667% {
+                      clip: rect(77px, 9999999px, 110px, 0);
+                    }
+                    60% {
+                      clip: rect(22px, 9999999px, 145px, 0);
+                    }
+                    66.66666667% {
+                      clip: rect(109px, 9999999px, 135px, 0);
+                    }
+                    70% {
+                      clip: rect(118px, 9999999px, 40px, 0);
+                    }
+                    73.33333333% {
+                      clip: rect(74px, 9999999px, 141px, 0);
+                    }
+                    76.66666667% {
+                      clip: rect(59px, 9999999px, 100px, 0);
+                    }
+                    80% {
+                      clip: rect(14px, 9999999px, 32px, 0);
+                    }
+                    93.33333333% {
+                      clip: rect(94px, 9999999px, 29px, 0);
+                    }
+                    100% {
+                      clip: rect(5px, 9999999px, 14px, 0);
+                    }
+                  }
+                </style>
+                <div class="glitch-wrapper">
+                  <div class="glitch" data-text="Get Your ShibaPubg Token">
+                    Get Your ShibaPubg Token
+                  </div>
                 </div>
               </div>
+              <img
+                src="https://assets-global.website-files.com/60d1114fcb4e3ebeff511585/60d1114fcb4e3ed7625115eb_deco-03.svg"
+                loading="lazy"
+                width="485"
+                alt=""
+                class="image"
+              />
+              <p class="paragraph left _50">
+                Convert your crypto to ShibaPubg tokens
+              </p>
+              <div id="test"></div>
             </div>
-            <img
-              src="https://assets-global.website-files.com/60d1114fcb4e3ebeff511585/60d1114fcb4e3ed7625115eb_deco-03.svg"
-              loading="lazy"
-              width="485"
-              alt=""
-              class="image"
-            />
-            <p class="paragraph left _50">
-              Convert your crypto to ShibaPubg tokens
-            </p>
-            <div id="test"></div>
-          </div>
-          <div class="div-block-68">
-            <div style="margin: 3%">
-              <div class="html-embed-13 w-embed w-iframe">
-                <div>
-                  <div class="containerForm">
-                    <div class="row">
-                      <div class="col-50">
-                        <h3>Get Your Shiba Pubg Token</h3>
-                        <!-- name -->
-                        <label for="fname"
-                          ><i class="fa fa-user"></i> Full Name</label
-                        >
-                        <input
-                          required
-                          minlength="3"
-                          type="text"
-                          id="name"
-                          name="fullname"
-                          placeholder="John M. Doe"
-                        />
-                        <!-- email -->
-                        <label for="email"
-                          ><i class="fa fa-envelope"></i> Email</label
-                        >
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          placeholder="john@example.com"
-                        />
-                        <!-- Phone Number -->
-                        <label for="phone"
-                          ><i class="fa fa-mobile-phone"></i> Phone</label
-                        >
-                        <input
-                          type="text"
-                          minlength="10"
-                          maxlength="10"
-                          id="phone"
-                          name="phone"
-                          placeholder="john@example.com"
-                        />
-                        <!-- wallet address -->
-                        <label for="adr"
-                          ><i class="fa fa-address-card-o"></i> Wallet Address
-                          (Polygon/Matic)</label
-                        >
-                        <input
-                          type="text"
-                          id="adr"
-                          name="address"
-                          placeholder="0x00000000"
-                        />
-                        <!-- amount -->
-                        <label for="amount"
-                          ><i class="fa fa-money"></i> Amount in USD</label
-                        >
-                        <input
-                          type="number"
-                          id="amount"
-                          name="amount"
-                          placeholder="Amount"
-                          oninput="tokenConverter()"
-                        />
-                        <!-- token amount -->
-                        <label for="tamount"
-                          ><i class="fa fa-life-buoy"></i> Token Amount</label
-                        >
-                        <input
-                          disabled
-                          type="text"
-                          id="tamount"
-                          name="tamount"
-                          placeholder="Token Amount"
-                        />
+            <div class="div-block-68">
+              <div style="margin: 3%">
+                <div class="html-embed-13 w-embed w-iframe">
+                  <div>
+                    <div class="containerForm">
+                      <div class="row">
+                        <div class="col-50">
+                          <h3>Get Your Shiba Pubg Token</h3>
+                          <!-- name -->
+                          <label for="fname"
+                            ><i class="fa fa-user"></i> Full Name</label
+                          >
+                          <input
+                            required
+                            minlength="3"
+                            type="text"
+                            id="name"
+                            placeholder="John M. Doe"
+                          />
+                          <!-- email -->
+                          <label for="email"
+                            ><i class="fa fa-envelope"></i> Email</label
+                          >
+                          <input
+                            type="email"
+                            id="email"
+                            placeholder="john@example.com"
+                          />
+                          <!-- Phone Number -->
+                          <label for="phone"
+                            ><i class="fa fa-mobile-phone"></i> Phone</label
+                          >
+                          <input
+                            type="text"
+                            minlength="10"
+                            maxlength="10"
+                            id="phone"
+                            placeholder="john@example.com"
+                          />
+                          <!-- wallet address -->
+                          <label for="adr"
+                            ><i class="fa fa-address-card-o"></i> Wallet Address
+                            (Polygon/Matic)</label
+                          >
+                          <input
+                            type="text"
+                            id="adr"
+                            placeholder="0x00000000"
+                          />
+                          <!-- amount -->
+                          <label for="amount"
+                            ><i class="fa fa-money"></i> Amount in USD</label
+                          >
+                          <input
+                            type="number"
+                            id="amount"
+                            placeholder="Amount"
+                            oninput="tokenConverter()"
+                          />
+                          <!-- token amount -->
+                          <label for="tamount"
+                            ><i class="fa fa-life-buoy"></i> Token Amount</label
+                          >
+                          <input
+                            disabled
+                            type="text"
+                            id="tamount"
+                            placeholder="Token Amount"
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div style="display: flex; justify-content: center">
-                      <button
-                        style="margin-right: 16px"
-                        class="btn"
-                        type="button"
-                        onclick="sendViaPayU()"
+                      <div id="payuForm" style="display: none">
+                        <form
+                          action="https://secure.payu.in/_payment"
+                          method="post"
+                        >
+                          <input id="payu-key" name="key" value="" />
+                          <input id="payu-txnid" name="txnid" value="" />
+                          <input
+                            id="payu-productinfo"
+                            name="productinfo"
+                            value=""
+                          />
+                          <input id="payu-amount" name="amount" value="" />
+                          <input id="payu-email" name="email" value="" />
+                          <input id="payu-name" name="firstname" value="" />
+                          <input id="payu-surl" name="surl" value="" />
+                          <input id="payu-furl" name="furl" value="" />
+                          <input id="payu-hash" name="hash" value="" />
+                          <input class="btn" type="submit" value="submit" />
+                        </form>
+                      </div>
+                      <div
+                        id="paymentButton"
+                        style="display: flex; justify-content: center"
                       >
-                        PayU
-                      </button>
-                      <button
-                        style="margin-right: 16px"
-                        class="btn"
-                        type="button"
-                        onclick="getInputValue()"
-                      >
-                        Coinbase
-                      </button>
-                    </div>
-                    <!-- <button class="btn" type="button" onclick="getInputValue()">
+                        <button
+                          style="margin-right: 16px"
+                          class="btn"
+                          type="button"
+                          onclick="sendViaPayU()"
+                        >
+                          PayU
+                        </button>
+                        <button
+                          style="margin-right: 16px"
+                          class="btn"
+                          type="button"
+                          onclick="getInputValue()"
+                        >
+                          Coinbase
+                        </button>
+                      </div>
+                      <!-- <button class="btn" type="button" onclick="getInputValue()">
                       Continue to checkout
                     </button> -->
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1055,4 +975,113 @@
       window.addEventListener("resize", addLinksIfDesktop);
     </script>
   </body>
+  <script>
+    async function sendViaPayU() {
+      // Selecting the input element and get its value
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let phone = document.getElementById("phone").value;
+      let adr = document.getElementById("adr").value;
+      let amount = document.getElementById("amount").value;
+      let tamount = document.getElementById("tamount").value;
+      const data = {
+        name: name,
+        email: email,
+        phone: phone,
+        address: adr,
+        amount: amount,
+        tokenAmount: tamount,
+      };
+      await fetch("https://shibapubg.herokuapp.com/user-details/payBank", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then(async (res) => {
+          const formResponse = await res.json();
+          console.log(formResponse.response, "formResponse");
+          document.getElementById("paymentButton").style.display = "none";
+          document.getElementById("payuForm").style.display = "block";
+          // //data popoulate
+          console.log(parseInt(formResponse?.response?.amount));
+          document.getElementById("payu-key").value =
+            formResponse?.response?.key;
+          document.getElementById("payu-txnid").value =
+            formResponse?.response?.txnId;
+          document.getElementById("payu-productinfo").value =
+            formResponse?.response?.prodInfo;
+          document.getElementById("payu-amount").value =
+            formResponse?.response?.amount;
+          document.getElementById("payu-email").value =
+            formResponse?.response?.email;
+          document.getElementById("payu-name").value =
+            formResponse?.response?.name;
+          document.getElementById("payu-surl").value =
+            formResponse?.response?.surl;
+          document.getElementById("payu-furl").value =
+            formResponse?.response?.furl;
+          document.getElementById("payu-hash").value =
+            formResponse?.response?.hash;
+        })
+        .catch((error) => {
+          console.log(error, "API ERROR");
+          alert("Error Something Went Wrong", error);
+        });
+    }
+
+    async function tokenConverter() {
+      console.log("dadadad");
+      const url = "https://shibapubg.herokuapp.com/user-details";
+      var x = document.getElementById("amount").value;
+
+      const res = fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          const token = x * data.value;
+          document.getElementById("tamount").value = token;
+        });
+    }
+
+    async function getInputValue() {
+      // Selecting the input element and get its value
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let phone = document.getElementById("phone").value;
+      let adr = document.getElementById("adr").value;
+      let amount = document.getElementById("amount").value;
+      let tamount = document.getElementById("tamount").value;
+      // post api call
+      const data = {
+        name: name,
+        email: email,
+        phone: phone,
+        address: adr,
+        amount: amount,
+        tokenAmount: tamount,
+      };
+      const res = await fetch(
+        "https://shibapubg.herokuapp.com/user-details/payCrypto",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (data?.success) {
+            window.location.href = data?.response;
+          } else {
+            alert("Error Something Went Wrong");
+          }
+        })
+        .catch((error) => {
+          alert("Error Something Went Wrong", error);
+        });
+    }
+  </script>
 </html>
