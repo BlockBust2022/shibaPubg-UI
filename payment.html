@@ -767,7 +767,7 @@
                             minlength="10"
                             maxlength="10"
                             id="phone"
-                            placeholder="john@example.com"
+                            placeholder="9876543210"
                           />
                           <!-- wallet address -->
                           <label for="adr"
@@ -861,7 +861,13 @@
                             name="hash"
                             value=""
                           />
-                          <input class="btn" type="submit" value="submit" />
+                          <input
+                            id="paynow"
+                            onclick="payNowButton();"
+                            class="btn"
+                            type="submit"
+                            value="Pay now"
+                          />
                         </form>
                       </div>
                       <div
@@ -869,20 +875,22 @@
                         style="display: flex; justify-content: center"
                       >
                         <button
+                          id="upiButton"
                           style="margin-right: 16px"
                           class="btn"
                           type="button"
                           onclick="sendViaPayU()"
                         >
-                          PayU
+                          Pay with UPI
                         </button>
                         <button
+                          id="cryptoButton"
                           style="margin-right: 16px"
                           class="btn"
                           type="button"
                           onclick="getInputValue()"
                         >
-                          Coinbase
+                          Pay with Crypto
                         </button>
                       </div>
                       <!-- <button class="btn" type="button" onclick="getInputValue()">
@@ -1026,6 +1034,33 @@
       let adr = document.getElementById("adr").value;
       let amount = document.getElementById("amount").value;
       let tamount = document.getElementById("tamount").value;
+
+      //add validation to all the input field
+      if (name == "") {
+        alert("Please enter your name");
+        return false;
+      }
+      if (email == "") {
+        alert("Please enter your email");
+        return false;
+      }
+      if (phone == "") {
+        alert("Please enter your phone number");
+        return false;
+      }
+      if (adr == "") {
+        alert("Please enter your address");
+        return false;
+      }
+      if (amount == "") {
+        alert("Please enter your amount");
+        return false;
+      }
+      if (tamount == "") {
+        alert("Please enter your Token amount");
+        return false;
+      }
+
       const data = {
         name: name,
         email: email,
@@ -1034,6 +1069,14 @@
         amount: amount,
         tokenAmount: tamount,
       };
+      //disable button
+      document.getElementById("upiButton").disabled = true;
+      document.getElementById("upiButton").innerHTML = "Processing...";
+
+      //disable crypto button
+      document.getElementById("cryptoButton").disabled = true;
+      document.getElementById("cryptoButton").innerHTML = "Processing...";
+
       await fetch("https://shibapubg.herokuapp.com/user-details/payBank", {
         method: "POST",
         headers: {
@@ -1094,6 +1137,33 @@
       let adr = document.getElementById("adr").value;
       let amount = document.getElementById("amount").value;
       let tamount = document.getElementById("tamount").value;
+
+      //add validation to all the input field
+      if (name == "") {
+        alert("Please enter your name");
+        return false;
+      }
+      if (email == "") {
+        alert("Please enter your email");
+        return false;
+      }
+      if (phone == "") {
+        alert("Please enter your phone number");
+        return false;
+      }
+      if (adr == "") {
+        alert("Please enter your address");
+        return false;
+      }
+      if (amount == "") {
+        alert("Please enter your amount");
+        return false;
+      }
+      if (tamount == "") {
+        alert("Please enter your Token amount");
+        return false;
+      }
+
       // post api call
       const data = {
         name: name,
@@ -1103,6 +1173,15 @@
         amount: amount,
         tokenAmount: tamount,
       };
+
+      //disable button
+      document.getElementById("upiButton").disabled = true;
+      document.getElementById("upiButton").innerHTML = "Processing...";
+
+      //disable crypto button
+      document.getElementById("cryptoButton").disabled = true;
+      document.getElementById("cryptoButton").innerHTML = "Processing...";
+
       const res = await fetch(
         "https://shibapubg.herokuapp.com/user-details/payCrypto",
         {

@@ -4,6 +4,7 @@
       href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap"
       rel="stylesheet"
     />
+    <meta http-equiv="refresh" content="5;url=/" />
   </head>
   <style>
     body {
@@ -38,6 +39,15 @@
       display: inline-block;
       margin: 0 auto;
     }
+
+    .buttonload {
+      margin-top: 20px;
+      background-color: #04aa6d; /* Green background */
+      border: none; /* Remove borders */
+      color: white; /* White text */
+      padding: 12px 24px; /* Some padding */
+      font-size: 16px; /* Set a font-size */
+    }
   </style>
   <body>
     <div class="card">
@@ -57,6 +67,12 @@
         We received your purchase request;<br />
         we'll be in touch shortly!
       </p>
+      <button class="buttonload" onclick="goToHome();">GO TO HOME</button>
     </div>
   </body>
+  <script>
+    function goToHome() {
+      window.location.href = "/";
+    }
+  </script>
 </html>
