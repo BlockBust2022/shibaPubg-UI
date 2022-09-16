@@ -1077,7 +1077,7 @@
       document.getElementById("cryptoButton").disabled = true;
       document.getElementById("cryptoButton").innerHTML = "Processing...";
 
-      await fetch("https://shibapubg.herokuapp.com/user-details/payBank", {
+      await fetch("https://shibapubg.onrender.com/user-details/payBank", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -1118,7 +1118,7 @@
 
     async function tokenConverter() {
       console.log("dadadad");
-      const url = "https://shibapubg.herokuapp.com/user-details";
+      const url = "https://shibapubg.onrender.com/user-details";
       var x = document.getElementById("amount").value;
 
       const res = fetch(url)
@@ -1183,7 +1183,7 @@
       document.getElementById("cryptoButton").innerHTML = "Processing...";
 
       const res = await fetch(
-        "https://shibapubg.herokuapp.com/user-details/payCrypto",
+        "https://shibapubg.onrender.com/user-details/payCrypto",
         {
           method: "POST",
           headers: {
